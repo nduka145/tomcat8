@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git checkout'){
       steps{
-        git 'https://github.com/nduka145/tomcat8.git'
+        git branch: 'molecule', url: 'https://github.com/nduka145/tomcat8.git'
       }
     }
   stage ('Build Virtualenv') {
