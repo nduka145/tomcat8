@@ -1,25 +1,15 @@
 ---
-dependency:
-  name: shell
-  command: ansible-galaxy collection install --force -r collections.yml
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
 platforms:
-  - name: "bionic-${BRANCH_NAME:-env.BRANCH_NAME}-PR-${BUILD_NUMBER:-00}"
-    image: 127579856528.dkr.ecr.us-west-2.amazonaws.com/devops/ubuntu-systemd:bionic
+  - name: testing
+    image: docker.io/pycontribs/centos:8
     privileged: true
     pre_build_image: true
-    docker_host: "${DOCKER_HOST:-unix://var/run/docker.sock}"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 scenario:
   name: default
   test_sequence:
