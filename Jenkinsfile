@@ -13,8 +13,8 @@ pipeline {
           echo "Building Virtualenv"
           python3 -m venv env
           . env/bin/activate
-          pip install --upgrade pip
-          ansible testinfra molecule podman python-vagrant ansible-lint flake8 molecule[lint,ansible,podman] jmespath
+          pip3 install --upgrade pip
+          python3 -m pip ansible testinfra molecule podman python-vagrant ansible-lint flake8 molecule[lint,ansible,podman] jmespath
         """
       }
     }
