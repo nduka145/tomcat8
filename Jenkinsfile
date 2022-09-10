@@ -14,7 +14,7 @@ pipeline {
           python3 -m venv env
           . env/bin/activate
           pip3 install --upgrade pip
-          python3 -m pip ansible testinfra molecule podman python-vagrant ansible-lint flake8 molecule[lint,ansible,podman] jmespath
+          python3 -m pip install ansible testinfra molecule podman python-vagrant ansible-lint flake8 molecule[lint,ansible,podman] jmespath
         """
       }
     }
