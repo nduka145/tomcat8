@@ -26,6 +26,7 @@ pipeline {
            echo "Running Molecule Test"
            . env/bin/activate
            cd roles/tomcat
+           whoami
            molecule test
         """
         }
