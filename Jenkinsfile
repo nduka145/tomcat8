@@ -1,15 +1,33 @@
 pipeline {
-      agent any
-      stages{
-                 stage ( "Git clone") {
-                  steps{
-                  checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nduka145/tomcat8.git']]]
-		}
-	}
-                 stage ( "Execute ansible playbook") {
-                  steps{
-                  ansiblePlaybook become: true, credentialsId: '70825930-7d06-4c06-9b87-1660cdadf7ea', installation: 'Ansible1', inventory: 'hosts', playbook: 'installtomcat.yml'
-		}
-	}
-       }
+  agent any
+  stages {
+    stage('Git checkout'){
+      steps{
+        git 'https://github.com/nduka145/tomcat8.git'
+      }
+    }
+  stage ('Build Virtualenv') {
+    steps {
+        sh """
+          set +x
+          echo "Building Virtualenv"
+          python3 -m venv env
+          . env/bin/activate
+          pip install --upgrade pip
+          pip install -U -r requirements.txt
+        """
+      }
+    }
+    
+  stage ('Molecule Test') {
+    steps {
+        sh """
+           set +x
+           echo "Running Molecule Test"
+           . env/bin/activate
+           molecule test
+        """
+        }
+      }    
+  }
 }
