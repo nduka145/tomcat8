@@ -1,8 +1,7 @@
 boto3
 boto
 botocore
-ansible
-podman
+ansible==2.10.7
 ansible-lint==5.3.2
 molecule==3.5.2
 molecule[lint]==3.5.2
