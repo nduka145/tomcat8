@@ -6,10 +6,28 @@ pipeline {
         git 'https://github.com/nduka145/tomcat8.git'
       }
     }
-    stage('Execute Ansible Playbook'){
-      steps{
-        ansiblePlaybook credentialsId: 'ca834448-ffc2-4c06-97df-dc3b4ceda0fd', installation: 'ansible2', inventory: '/root/.jenkins/workspace/tomcat8/hosts', playbook: '/root/.jenkins/workspace/tomcat8/installtomcat.yml'
+  stage ('Build Virtualenv') {
+    steps {
+        sh """
+          set +x
+          echo "Building Virtualenv"
+          python3 -m venv env
+          . env/bin/activate
+          pip install --upgrade pip
+          pip install -U -r requirements.txt
+        """
       }
     }
+    
+  stage ('Molecule Test') {
+    steps {
+        sh """
+           set +x
+           echo "Running Molecule Test"
+           . env/bin/activate
+           molecule test
+        """
+        }
+      }    
   }
 }
