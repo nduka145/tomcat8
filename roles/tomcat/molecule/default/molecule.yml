@@ -1,36 +1,13 @@
 ---
+dependency:
+  name: galaxy
 driver:
   name: docker
 platforms:
-  - name: testing
+  - name: instance
     image: docker.io/pycontribs/centos:7
-    privileged: true
     pre_build_image: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
-scenario:
-  name: default
-  test_sequence:
-    - lint
-    - dependency
-    - destroy
-    - syntax
-    - create
-    - converge
-    - idempotence
-    - verify
-    - destroy
-  converge_sequence:
-    - dependency
-    - create
-    - converge
-  create_sequence:
-    - dependency
-    - create
-  destroy_sequence:
-    - dependency
-    - destroy
 verifier:
   name: ansible
