@@ -6,7 +6,7 @@ tomcat8_pkg: apache-tomcat-8.0.32.tar.gz
 
 tomcat8_pkg1: /tomcat/apache-tomcat-8.0.32.tar.gz
 
-jenkins_pkg: http://mirrors.jenkins.io/war/latest/jenkins.war
+jenkins_pkg: https://get.jenkins.io/war-stable/2.462.3/jenkins.war
 
 tomcat_source: /tomcat
 
