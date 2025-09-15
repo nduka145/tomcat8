@@ -6,6 +6,9 @@
   - name: Create tomcat group
     group: name=tomcat state=present
 
+  - name: set SELinux to permissive
+    shell: 'setenforce 0'
+
   - name: Create tomcat user
     user: name=tomcat group=wheel state=present
 
