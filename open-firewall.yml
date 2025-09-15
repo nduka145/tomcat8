@@ -1,11 +1,8 @@
 ---
-- hosts: localhost
+- hosts: all
   become: yes
   become_method: sudo
-  tasks:
-    - name: crete file
-      command: touch /opt/danielmoney.txt
-      
+  tasks:   
     - firewalld:
         port: 8080/tcp
         permanent: yes
