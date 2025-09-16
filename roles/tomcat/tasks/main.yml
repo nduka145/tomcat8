@@ -26,9 +26,6 @@
       dest: /tomcat/
       remote_src: yes
 
-  - name: download jenkins
-    get_url: url={{ jenkins_pkg }} dest=/tomcat/apache-tomcat-8.0.32/webapps
-
   - name: copy tomcat-users.xml to tomcat_home/conf
     copy: src=roles/tomcat/files/tomcat-users.xml dest=/tomcat/apache-tomcat-8.0.32/conf owner=tomcat group=tomcat mode=0755
 
