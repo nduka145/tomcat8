@@ -1,6 +1,7 @@
 ---
 - name: Check Red Hat and Java versions
   hosts: dev
+  remote_user: sycat
   become: false
   gather_facts: true
 
