@@ -1,6 +1,6 @@
 ---
 - name: Check Red Hat and Java versions
-  hosts: all
+  hosts: dev
   become: false
   gather_facts: true
 
