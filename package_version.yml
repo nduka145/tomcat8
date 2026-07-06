@@ -22,7 +22,7 @@
 
     - name: pause job
       ansible.builtin.pause:
-      minutes: 1
+        minutes: 1
     
     - name: Display Java version
       debug:
