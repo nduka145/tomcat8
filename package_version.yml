@@ -20,6 +20,10 @@
       changed_when: false
       failed_when: false
 
+    - name: pause job
+      ansible.builtin.pause:
+      minutes: 1
+    
     - name: Display Java version
       debug:
         msg: >-
